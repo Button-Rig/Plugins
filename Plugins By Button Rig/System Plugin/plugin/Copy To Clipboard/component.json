@@ -1,0 +1,5 @@
+{
+    "component_type":"action",
+    "name":"Copy to Clipboard",
+    "icon":"clipboard.svg"
+}

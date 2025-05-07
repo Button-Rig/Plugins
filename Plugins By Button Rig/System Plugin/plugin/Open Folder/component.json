@@ -1,0 +1,5 @@
+{
+    "component_type":"action",
+    "name":"Open Folder",
+    "icon":"folder.svg"
+}
