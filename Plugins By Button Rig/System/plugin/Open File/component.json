@@ -1,0 +1,6 @@
+{
+    "component_type":"action",
+    "name":"Open File",
+    "icon":"file.svg",
+    "action_execution_label": "Opening file"
+}

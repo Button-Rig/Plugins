@@ -1,0 +1,6 @@
+{
+    "component_type":"action",
+    "name":"Unlock app",
+    "icon":"unlock-app.svg",
+    "action_execution_label": "Unlocking App"
+}

@@ -1,0 +1,6 @@
+{
+    "component_type":"action",
+    "name":"Close to system tray",
+    "icon":"xmark.svg",
+    "action_execution_label": "Closing to system tray"
+}

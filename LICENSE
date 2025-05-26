@@ -1,0 +1,29 @@
+# Button Rig Plugins Attribution License 
+**Version 1.0**  
+
+### Terms  
+Permission is granted, free of charge, to use, modify, and distribute this software ("Software") under these conditions:  
+
+1. **Attribution Required**  
+   - Any public use, derivative work, or distribution **must include**:  
+     - The project's name **"Button Rig Plugins"**.
+   - Credit must appear in:  
+     - Documentation (e.g., README, "About" sections).  
+     - UIs/websites (if applicable).  
+     - Metadata of distributed binaries.  
+
+2. **No Warranty**  
+   - The Software is provided **"AS IS"**, without liability.  
+
+3. **No Misrepresentation**  
+   - You may not imply the original author endorses your project.  
+
+### Examples  
+✅ **Allowed**:  
+> "This project uses code/plugins from Button Rig Plugins."  
+
+❌ **Not Allowed**:  
+> Removing attribution or claiming original authorship.  
+
+### Violations  
+Failure to comply terminates all rights under this license.  

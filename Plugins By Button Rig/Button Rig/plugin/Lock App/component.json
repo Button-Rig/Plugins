@@ -1,0 +1,6 @@
+{
+    "component_type":"action",
+    "name":"Lock app",
+    "icon":"lock-app.svg",
+    "action_execution_label": "Locking App"
+}

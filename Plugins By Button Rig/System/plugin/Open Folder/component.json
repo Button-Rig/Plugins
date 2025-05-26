@@ -1,0 +1,6 @@
+{
+    "component_type":"action",
+    "name":"Open Folder",
+    "icon":"folder.svg",
+    "action_execution_label": "Opening folder"
+}

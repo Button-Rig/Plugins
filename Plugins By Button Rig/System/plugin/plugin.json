@@ -1,0 +1,12 @@
+{
+    "name":"System",
+    "target_version":"br_plugins_1.0",
+    "icon":"computer.svg",
+    "handler_cli": [
+        {
+            "platfrom":"x86",
+            "os":"windows",
+            "path":"handler_cli_x86_windows.exe"
+        }
+    ]
+}
