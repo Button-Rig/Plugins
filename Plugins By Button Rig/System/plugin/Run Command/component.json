@@ -1,6 +1,0 @@
-{
-    "component_type":"action",
-    "name":"Run Command",
-    "icon":"greater-than.svg",
-    "action_execution_label": "Running command"
-}

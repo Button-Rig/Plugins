@@ -1,6 +1,0 @@
-{
-    "component_type":"action",
-    "name":"Copy to Clipboard",
-    "icon":"clipboard.svg",
-    "action_execution_label": "Coying to Clipboard"
-}

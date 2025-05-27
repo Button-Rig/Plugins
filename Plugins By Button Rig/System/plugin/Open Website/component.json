@@ -1,6 +1,0 @@
-{
-    "component_type":"action",
-    "name":"Open Website",
-    "icon":"globe.svg",
-    "action_execution_label": "Opening website"
-}

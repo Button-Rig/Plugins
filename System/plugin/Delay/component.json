@@ -1,0 +1,10 @@
+{
+    "component_type":"action",
+    "name":"Delay",
+    "icon":"clock.svg",
+    "action_execution_label": "Delaying",
+    "security": {
+        "risk_level":"moderate",
+        "warning": "Can be combined with a malicious action for delayed effect."
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "component_type":"action",
+    "name":"Open File",
+    "icon":"file.svg",
+    "action_execution_label": "Opening file",
+    "security": {
+        "risk_level":"high",
+        "warning": "The included file could be malicious."
+    }
+}

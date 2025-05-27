@@ -4,7 +4,6 @@ mod open_file;
 mod open_folder;
 mod open_website;
 mod run_command;
-mod process_result_handler;
 
 pub use copy_to_clipboard::CopyToClipboard as CopyToClipboard;
 pub use delay::Delay as Delay;

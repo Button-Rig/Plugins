@@ -1,6 +1,0 @@
-{
-    "component_type":"action",
-    "name":"Delay",
-    "icon":"clock.svg",
-    "action_execution_label": "Delaying"
-}
