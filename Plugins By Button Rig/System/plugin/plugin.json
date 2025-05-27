@@ -6,7 +6,7 @@
         {
             "platfrom":"x86",
             "os":"windows",
-            "path":"handler_cli_x86_windows.exe"
+            "path":"handler-cli-x86-windows.exe"
         }
     ]
 }

@@ -11,7 +11,7 @@ pub struct CopyToClipboard {
 
 impl CopyToClipboard {
     pub fn execute(&self) {
-        let mut ctx = ClipboardContext::new().unwrap();
+        let mut ctx = get_clipbaord_context();
         let result = ctx.set_contents(self.value.clone());
         match result {
             Ok(_) => {
@@ -23,4 +23,14 @@ impl CopyToClipboard {
             },
         }
     }
+}
+
+fn get_clipbaord_context() -> ClipboardContext {
+     return match ClipboardContext::new() {
+            Ok(ctx) => ctx,
+            Err(e) => {
+                eprintln!("Error while fetching clipbaord context : {}", e);
+                exit(1);
+            },
+        };
 }
