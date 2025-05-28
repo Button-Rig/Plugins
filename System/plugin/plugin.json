@@ -1,5 +1,6 @@
 {
     "name":"System",
+    "version":"1.0",
     "target_version":"br_plugins_1.0",
     "icon":"computer.svg",
     "handler_cli": [
