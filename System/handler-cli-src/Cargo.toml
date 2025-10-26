@@ -7,6 +7,3 @@ edition = "2024"
 clap = { version = "4.5.38", features = ["derive"]}
 copypasta = "0.10.2"
 open = "5"
-
-[workspace]
-members = ["xbuild"]

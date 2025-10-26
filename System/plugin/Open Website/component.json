@@ -6,5 +6,6 @@
     "security": {
         "risk_level":"high",
         "warning": "The website being opened could be malicious."
-    }
+    },
+    "type":"action"
 }

@@ -6,5 +6,6 @@
     "security": {
         "risk_level":"moderate",
         "warning": "Can be combined with a malicious action for delayed effect."
-    }
+    },
+    "type":"action"
 }

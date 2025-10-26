@@ -1,0 +1,21 @@
+html {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  color: black;
+  font-weight: 700;
+  align-items: center;
+  gap: 20px;
+  background-color: #feb60c;  
+  padding: 0px 20px;
+}
+
+
+
+img {
+  height: 20px;
+}

@@ -15,7 +15,7 @@ impl OpenWebsite {
             &format!("https://{}", self.url)
         };
 
-        let result = open::that(url);
+        let result = open::that_detached(url);
 
         if let Err(e) = result {
             eprintln!("Error while opening the website : {}", e);

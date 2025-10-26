@@ -1,0 +1,12 @@
+{
+    "name":"Button Rig",
+    "version":"1.0",
+    "targetVersion":"br_plugins_1.0",
+    "icon":"buttonrig.svg",
+    "handlerCli": [
+        {
+            "target":"x86_64-unknown-linux-gnu",
+            "path":"handler-cli-x86_64-linux"
+        }
+    ]
+}

@@ -9,7 +9,7 @@ pub struct OpenFolder {
 
 impl OpenFolder {
     pub fn execute(&self) {
-        let result = open::that(self.folder_path.clone());
+        let result = open::that_detached(self.folder_path.clone());
         
         if let Err(e) = result {
             eprintln!("Error while trying to open the folder : {}", e);

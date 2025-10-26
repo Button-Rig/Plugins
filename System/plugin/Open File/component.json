@@ -6,5 +6,6 @@
     "security": {
         "risk_level":"high",
         "warning": "The included file could be malicious."
-    }
+    },
+    "type":"action"
 }

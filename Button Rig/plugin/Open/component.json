@@ -1,6 +1,0 @@
-{
-    "component_type":"action",
-    "name":"Open app",
-    "icon":"arrow-up-right-from-square.svg",
-    "action_execution_label": "Opening App"
-}

@@ -6,5 +6,6 @@
     "security": {
         "risk_level":"high",
         "warning": "Malicious scripts could be copied to your clipboard."
-    }
+    },
+    "type":"action"
 }

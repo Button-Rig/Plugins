@@ -6,5 +6,6 @@
     "security": {
         "risk_level":"high",
         "warning": "The included folder could contain malicious content."
-    }
+    },
+    "type":"action"
 }

@@ -6,5 +6,6 @@
     "security": {
         "risk_level":"high",
         "warning": "The command being run could be malicious."
-    }
+    },
+    "type":"action"
 }
