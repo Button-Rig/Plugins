@@ -1,9 +1,0 @@
-{
-    "type":"action",
-    "name":"Exit app",
-    "icon":"right-from-bracket.svg",
-    "actionConfig" : {
-        "configuratorHeightInPx":50,
-        "executionLabel": "Exiting"
-    }
-}

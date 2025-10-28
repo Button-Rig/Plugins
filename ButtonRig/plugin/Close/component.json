@@ -1,9 +1,0 @@
-{
-    "type":"action",
-    "name":"Close to system tray",
-    "icon":"xmark.svg",
-    "actionConfig" : {
-        "configuratorHeightInPx":50,
-        "executionLabel": "Closing to system tray"
-    }
-}

@@ -1,9 +1,0 @@
-{
-    "type":"action",
-    "name":"Unlock app",
-    "icon":"unlock-app.svg",
-    "actionConfig" : {
-        "configuratorHeightInPx":50,
-        "executionLabel": "Unlocking App"
-    }
-}

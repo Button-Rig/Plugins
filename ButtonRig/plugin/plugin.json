@@ -1,12 +1,80 @@
 {
-    "name":"Button Rig",
-    "version":"1.0",
-    "targetVersion":"br_plugins_1.0",
-    "icon":"buttonrig.svg",
-    "handlerCli": [
-        {
-            "target":"x86_64-unknown-linux-gnu",
-            "path":"handler-cli-x86_64-linux"
-        }
-    ]
+  "name": "Button Rig",
+  "version": "1.0",
+  "targetVersion": "br_plugins_1.0",
+  "icon": "buttonrig.svg",
+  "handlerCli": [
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "path": "handler-cli-x86_64-linux"
+    }
+  ],
+  "components": [
+    {
+      "name": "Close to system tray",
+      "urlPath": "close",
+      "type": "action",
+      "icon": "close/xmark.svg",
+      "actionConfig": {
+        "configuratorHeightInPx": 50,
+        "executionLabel": "Closing to system tray"
+      },
+      "security": {
+        "riskLevel": "none"
+      }
+    },
+    {
+      "name": "Open app",
+      "urlPath": "open",
+      "type": "action",
+      "icon": "open/arrow-up-right-from-square.svg",
+      "actionConfig": {
+        "configuratorHeightInPx": 50,
+        "executionLabel": "Opening App"
+      },
+      "security": {
+        "riskLevel": "none"
+      }
+    },
+    {
+      "name": "Exit app",
+      "urlPath": "exit",
+      "type": "action",
+      "icon": "exit/right-from-bracket.svg",
+      "actionConfig": {
+        "configuratorHeightInPx": 50,
+        "executionLabel": "Exiting"
+      },
+      "security": {
+        "riskLevel": "none"
+      }
+    },
+    {
+      "name": "Lock app",
+      "urlPath": "lock",
+      "type": "action",
+      "icon": "lock/lock-app.svg",
+      "actionConfig": {
+        "configuratorHeightInPx": 50,
+        "executionLabel": "Locking App"
+      },
+      "security": {
+        "riskLevel": "none"
+      }
+    },
+
+    {
+      "name": "Unlock app",
+      "urlPath": "unlock",
+      "type": "action",
+      "icon": "unlock/unlock-app.svg",
+      "actionConfig": {
+        "configuratorHeightInPx": 50,
+        "executionLabel": "Unlocking App"
+      },
+      "security": {
+        "riskLevel": "none"
+      }
+    }
+  ]
 }

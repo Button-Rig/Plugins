@@ -1,9 +1,0 @@
-{
-    "type":"action",
-    "name":"Lock app",
-    "icon":"lock-app.svg",
-    "actionConfig" : {
-        "configuratorHeightInPx":50,
-        "executionLabel": "Locking App"
-    }
-}

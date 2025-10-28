@@ -1,0 +1,38 @@
+:root {
+  --primary-color: #131e24;
+  --secondary-color: #273e49;
+}
+
+html {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+body {
+  background-color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  color: white;
+  padding: 5px;
+}
+
+textarea {
+  background-color: var(--secondary-color);
+  color: white;
+  border-radius: 5px;
+  resize: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.input-label {
+    color: rgb(188, 188, 188);
+    font-size: 0.97rem;
+}

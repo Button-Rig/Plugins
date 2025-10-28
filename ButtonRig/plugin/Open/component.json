@@ -1,9 +1,0 @@
-{
-    "type":"action",
-    "name":"Open app",
-    "icon":"arrow-up-right-from-square.svg",
-    "actionConfig" : {
-        "configuratorHeightInPx":50,
-        "executionLabel": "Opening App"
-    }
-}
