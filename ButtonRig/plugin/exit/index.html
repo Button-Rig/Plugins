@@ -2,11 +2,11 @@
 <html>
   <head>
     <link rel="stylesheet" crossorigin href="/styles.css" />
-    <script src="/buttonrig.js" defer></script>
-    <script>
-        window.onload = function() {
-            saveHandlerArgs(["exit"])
-        }
+    <script type="module">
+      import { saveHandlerArgs } from "../node_modules/buttonrig/dist/main.js";
+      window.onload = function () {
+        saveHandlerArgs(() => ["exit"]);
+      };
     </script>
   </head>
   <body>
