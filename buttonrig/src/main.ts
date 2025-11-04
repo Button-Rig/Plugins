@@ -1,4 +1,4 @@
-import { newMessage, type RxPayload, type TxPayload, ErrorPayload, newSaveHandlerArgs, LoadHandlerArgsPayload } from "./types.js";
+import { newMessage, type RxPayload, type TxPayload, ErrorPayload, newSaveHandlerArgs, RxLoadHandlerArgsPayload } from "./types.js";
 
 export function saveHandlerArgs(retriveArgsFn: () => string[] | ErrorPayload) {
     addEventListener("saveHandlerArgs", (_) => {
@@ -15,21 +15,22 @@ export function saveHandlerArgs(retriveArgsFn: () => string[] | ErrorPayload) {
 
 export function loadHandlerArgs(fn: (handlerArgs: string[]) => void) {
     addEventListener("loadHandlerArgs", (payload) => {
-        if (payload instanceof LoadHandlerArgsPayload) {
-            fn(payload.loadHandlerArgs.handlerArgs);
-        }
+        let p = payload as RxLoadHandlerArgsPayload;
+        fn(p.loadHandlerArgs.handlerArgs);
     });
+    postMessage("readyToReceive");
 }
 
-function addEventListener(eventName: string, fn: (payload: RxPayload) => void) {
+export function addEventListener(eventType: string, fn: (payload: RxPayload) => void)  {
     window.addEventListener("message", (event) => {
-        if (event.data.event != eventName) {
+        if (!(event.data.event == eventType || Object.keys(event.data.event)[0] == eventType)) {
             return;
         }
-        fn(event.data.payload as RxPayload);
+        fn(event.data.event as RxPayload);
     })
 }
 
-function postMessage(payload: TxPayload) {
+
+export function postMessage(payload: TxPayload) {
     window.parent.postMessage(newMessage(payload), "*")
 }

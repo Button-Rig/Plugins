@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { loadHandlerArgs, saveHandlerArgs } from "buttonrig";
+  import { ErrorPayload } from "buttonrig/dist/types";
+
     class Clipboard {
         type: string;
         filePath: string | null;
@@ -18,16 +21,42 @@
             return this.type == "file";
         }
 
-        static text() : Clipboard {
-            return new Clipboard("text");
+        static text(value: string | null) : Clipboard {
+            let clipboard = new Clipboard("text");
+            if (value) {
+              clipboard.textContent = value;
+            }
+            return clipboard;
         }
 
         static file() : Clipboard {
             return new Clipboard("file");
         }
     }
-  let clipboard = $state(Clipboard.text());
+
+
+
+  let clipboard = $state(Clipboard.text(null));
+
+  loadHandlerArgs((args)=> {
+    if (args[1] == "--value") {
+      if (args[2]) {
+        clipboard = Clipboard.text(args[2]);
+      }
+    }
+  });
   
+  saveHandlerArgs(() => {
+    if (clipboard.isText()) {
+      if(clipboard.textContent) {
+        return ["copy-to-clipboard", "--value",  clipboard.textContent];
+      }else {
+        return new ErrorPayload("Clipboard text not set.")
+      }
+    } else {
+      return ["copy-to-clipboard", "--value"]
+    }
+  })
 </script>
 
 <div class="container">
@@ -36,7 +65,7 @@
     <div>
       <input
         id="text"
-        onclick={() => (clipboard = Clipboard.text())}
+        onclick={() => (clipboard = Clipboard.text(null))}
         name="content-type"
         type="radio"
         checked={clipboard.type == "text"}
@@ -69,7 +98,7 @@
 {#if clipboard.isText()}
   <div id="text-content" class="container">
     <span>Text</span>
-    <textarea rows="2"></textarea>
+    <textarea bind:value={clipboard.textContent} rows="2"></textarea>
   </div>
 {/if}
 

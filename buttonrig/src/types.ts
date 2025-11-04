@@ -22,11 +22,11 @@ export function newMessage(payload: TxPayload): Message {
   };
 }
 
-export type TxPayload = SaveHandlerArgsPayload | ErrorPayload;
+export type TxPayload = TxReadyToReceive | TxSaveHandlerArgsPayload | ErrorPayload;
 
 export function newSaveHandlerArgs(
   handlerArgs: string[]
-): SaveHandlerArgsPayload {
+): TxSaveHandlerArgsPayload {
   return {
     saveHandlerArgs: {
       handlerArgs,
@@ -34,9 +34,9 @@ export function newSaveHandlerArgs(
   };
 }
 
-export type RxPayload = LoadHandlerArgsPayload | null;
+export type RxPayload =  RxLoadHandlerArgsPayload | null;
 
-export class LoadHandlerArgsPayload {
+export class RxLoadHandlerArgsPayload {
     loadHandlerArgs: {
         handlerArgs: string[]
     }
@@ -48,8 +48,10 @@ export class LoadHandlerArgsPayload {
     }
 }
 
-export interface SaveHandlerArgsPayload {
+export interface TxSaveHandlerArgsPayload {
   saveHandlerArgs: {
     handlerArgs: string[];
   };
 }
+
+export type TxReadyToReceive = "readyToReceive";
