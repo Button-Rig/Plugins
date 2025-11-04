@@ -22,7 +22,7 @@ export function newMessage(payload: TxPayload): Message {
   };
 }
 
-export type TxPayload = TxReadyToReceive | TxSaveHandlerArgsPayload | ErrorPayload;
+export type TxPayload = TxPickFolder | TxPickFile | TxReadyToReceive | TxSaveHandlerArgsPayload | ErrorPayload;
 
 export function newSaveHandlerArgs(
   handlerArgs: string[]
@@ -34,7 +34,7 @@ export function newSaveHandlerArgs(
   };
 }
 
-export type RxPayload =  RxLoadHandlerArgsPayload | null;
+export type RxPayload = RxFolderPickPayload | RxFilePickPayload | RxLoadHandlerArgsPayload | null;
 
 export class RxLoadHandlerArgsPayload {
     loadHandlerArgs: {
@@ -48,6 +48,30 @@ export class RxLoadHandlerArgsPayload {
     }
 }
 
+export class RxFilePickPayload {
+  filePick: {
+    file: string | null
+  }
+
+  constructor() {
+    this.filePick = {
+      file: null
+    }
+  }
+}
+
+export class RxFolderPickPayload {
+  folderPick: {
+    folder: string | null
+  }
+
+  constructor() {
+    this.folderPick = {
+      folder: null
+    }
+  }
+}
+
 export interface TxSaveHandlerArgsPayload {
   saveHandlerArgs: {
     handlerArgs: string[];
@@ -55,3 +79,5 @@ export interface TxSaveHandlerArgsPayload {
 }
 
 export type TxReadyToReceive = "readyToReceive";
+export type TxPickFile = "pickFile";
+export type TxPickFolder = "pickFolder";

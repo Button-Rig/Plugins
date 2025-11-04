@@ -56,7 +56,7 @@
     } else {
       return ["copy-to-clipboard", "--value"]
     }
-  })
+  });
 </script>
 
 <div class="container">

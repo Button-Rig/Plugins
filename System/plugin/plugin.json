@@ -34,7 +34,7 @@
       "type": "action",
       "icon": "icons/clock.svg",
       "actionConfig": {
-        "configuratorHeightInPx": 50,
+        "configuratorHeightInPx": 70,
         "executionLabel": "Delaying"
       },
       "security": {

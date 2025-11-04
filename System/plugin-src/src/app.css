@@ -26,6 +26,16 @@ textarea {
   resize: none;
 }
 
+input {
+  background-color: var(--secondary-color);
+  color: white;
+  border-radius: 5px;
+  resize: none;
+  height: 30px;
+  border: none;
+  padding: 0px 10px;
+}
+
 .container {
   display: flex;
   flex-direction: column;
