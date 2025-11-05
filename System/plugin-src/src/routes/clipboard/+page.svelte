@@ -1,60 +1,59 @@
 <script lang="ts">
+  import FilePicker from "$lib/components/FilePicker.svelte";
   import { loadHandlerArgs, saveHandlerArgs } from "buttonrig";
   import { ErrorPayload } from "buttonrig/dist/types";
 
-    class Clipboard {
-        type: string;
-        filePath: string | null;
-        textContent: string | null;
+  class Clipboard {
+    type: string;
+    filePath: string | null;
+    textContent: string | null;
 
-        constructor(type: string) {
-            this.type = type;
-            this.filePath = null;
-            this.textContent = null;
-        }
-
-        isText() : boolean {
-            return this.type == "text";
-        }
-
-        isFile() : boolean {
-            return this.type == "file";
-        }
-
-        static text(value: string | null) : Clipboard {
-            let clipboard = new Clipboard("text");
-            if (value) {
-              clipboard.textContent = value;
-            }
-            return clipboard;
-        }
-
-        static file() : Clipboard {
-            return new Clipboard("file");
-        }
+    constructor(type: string) {
+      this.type = type;
+      this.filePath = null;
+      this.textContent = null;
     }
 
+    isText(): boolean {
+      return this.type == "text";
+    }
 
+    isFile(): boolean {
+      return this.type == "file";
+    }
+
+    static text(value: string | null): Clipboard {
+      let clipboard = new Clipboard("text");
+      if (value) {
+        clipboard.textContent = value;
+      }
+      return clipboard;
+    }
+
+    static file(): Clipboard {
+      return new Clipboard("file");
+    }
+  }
 
   let clipboard = $state(Clipboard.text(null));
 
-  loadHandlerArgs((args)=> {
+  loadHandlerArgs((args) => {
     if (args[1] == "--value") {
       if (args[2]) {
         clipboard = Clipboard.text(args[2]);
       }
     }
   });
-  
+
   saveHandlerArgs(() => {
     if (clipboard.isText()) {
-      if(clipboard.textContent) {
-        return ["copy-to-clipboard", "--value",  clipboard.textContent];
-      }else {
-        return new ErrorPayload("Clipboard text not set.")
+      if (clipboard.textContent) {
+        return ["copy-to-clipboard", "--value", clipboard.textContent];
+      } else {
+        return new ErrorPayload("Clipboard text not set.");
       }
     } else {
-      return ["copy-to-clipboard", "--value"]
+      return ["copy-to-clipboard", "--value"];
     }
   });
 </script>
@@ -88,10 +87,7 @@
 {#if clipboard.isFile()}
   <div id="file-content" class="container">
     <span>File</span>
-    <div class="selcted-file-container">
-      <div class="selcted-file"></div>
-      <button>Select file</button>
-    </div>
+    <FilePicker bind:file={clipboard.filePath} />
   </div>
 {/if}
 
@@ -101,23 +97,3 @@
     <textarea bind:value={clipboard.textContent} rows="2"></textarea>
   </div>
 {/if}
-
-<style>
-  .selcted-file-container {
-    display: flex;
-    flex-direction: row;
-    gap: 2%;
-    
-  }
-
-  .selcted-file-container button {
-    width: 15%;
-  }
-
-  .selcted-file {
-    width: 83%;
-    height: 35px;
-    background-color: var(--secondary-color);
-    border-radius: 5px;
-  }
-</style>

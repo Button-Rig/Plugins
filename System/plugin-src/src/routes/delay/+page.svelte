@@ -21,6 +21,3 @@
     <span>Milliseconds</span>
     <input type="number" min="0" bind:value={delay} />    
 </div>
-
-<style>
-</style>

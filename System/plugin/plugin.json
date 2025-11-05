@@ -47,7 +47,7 @@
       "type": "action",
       "icon": "icons/file.svg",
       "actionConfig": {
-        "configuratorHeightInPx": 50,
+        "configuratorHeightInPx": 70,
         "executionLabel": "Opening file"
       },
       "security": {

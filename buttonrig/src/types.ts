@@ -22,7 +22,25 @@ export function newMessage(payload: TxPayload): Message {
   };
 }
 
-export type TxPayload = TxPickFolder | TxPickFile | TxReadyToReceive | TxSaveHandlerArgsPayload | ErrorPayload;
+export type TxPayload =
+  | TxPickFilePayload
+  | TxPickFilesPayload
+  | TxPickFolder
+  | TxReadyToReceive
+  | TxSaveHandlerArgsPayload
+  | ErrorPayload;
+
+export interface TxPickFilePayload {
+  pickFile: {
+    extensions: string[];
+  };
+}
+
+export interface TxPickFilesPayload {
+  pickFiles: {
+    extensions: string[];
+  }
+}
 
 export function newSaveHandlerArgs(
   handlerArgs: string[]
@@ -34,41 +52,58 @@ export function newSaveHandlerArgs(
   };
 }
 
-export type RxPayload = RxFolderPickPayload | RxFilePickPayload | RxLoadHandlerArgsPayload | null;
+export type RxPayload =
+  | RxFilePickPayload
+  | RxFilesPickPayload
+  | RxFolderPickPayload
+  | RxLoadHandlerArgsPayload
+  | null;
 
 export class RxLoadHandlerArgsPayload {
-    loadHandlerArgs: {
-        handlerArgs: string[]
-    }
+  loadHandlerArgs: {
+    handlerArgs: string[];
+  };
 
-    constructor(handlerArgs: string[]) {
-        this.loadHandlerArgs = {
-            handlerArgs
-        }
-    }
+  constructor(handlerArgs: string[]) {
+    this.loadHandlerArgs = {
+      handlerArgs,
+    };
+  }
 }
 
 export class RxFilePickPayload {
   filePick: {
-    file: string | null
-  }
+    file: string | null;
+  };
 
   constructor() {
     this.filePick = {
-      file: null
-    }
+      file: null,
+    };
+  }
+}
+
+export class RxFilesPickPayload {
+  filesPick: {
+    files: string[];
+  };
+
+  constructor() {
+    this.filesPick = {
+      files: [],
+    };
   }
 }
 
 export class RxFolderPickPayload {
   folderPick: {
-    folder: string | null
-  }
+    folder: string | null;
+  };
 
   constructor() {
     this.folderPick = {
-      folder: null
-    }
+      folder: null,
+    };
   }
 }
 
@@ -79,5 +114,4 @@ export interface TxSaveHandlerArgsPayload {
 }
 
 export type TxReadyToReceive = "readyToReceive";
-export type TxPickFile = "pickFile";
 export type TxPickFolder = "pickFolder";
