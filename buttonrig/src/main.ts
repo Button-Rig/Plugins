@@ -30,7 +30,6 @@ export function pickFile(extensions: string[]): Promise<string | null> {
             }
         });
         addEventListener("filePick", (payload) => {
-            console.log("payload of pickFile", payload);
             let filePickPayload = payload as RxFilePickPayload;
             resolve(filePickPayload.filePick.file);
         });
@@ -63,11 +62,9 @@ export function pickFolder(): Promise<string | null> {
 
 function addEventListener(eventType: string, fn: (payload: RxPayload) => void)  {
     window.addEventListener("message", (event) => {
-        console.log("event", event);
         if (!(event.data.event == eventType || Object.keys(event.data.event)[0] == eventType)) {
             return;
         }
-        console.log("event matched");
         fn(event.data.event as RxPayload);
     })
 }

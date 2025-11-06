@@ -5,7 +5,6 @@
 
   async function selectFile() {
     file = await pickFile([]);
-    console.log("file", file);
   }
 </script>
 

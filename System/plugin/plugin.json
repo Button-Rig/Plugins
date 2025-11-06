@@ -61,7 +61,7 @@
       "type": "action",
       "icon": "icons/folder.svg",
       "actionConfig": {
-        "configuratorHeightInPx": 50,
+        "configuratorHeightInPx": 70,
         "executionLabel": "Opening folder"
       },
       "security": {
@@ -75,7 +75,7 @@
       "type": "action",
       "icon": "icons/globe.svg",
       "actionConfig": {
-        "configuratorHeightInPx": 50,
+        "configuratorHeightInPx": 70,
         "executionLabel": "Opening website"
       },
       "security": {
@@ -89,7 +89,7 @@
       "type": "action",
       "icon": "icons/greater-than.svg",
       "actionConfig": {
-        "configuratorHeightInPx": 50,
+        "configuratorHeightInPx": 150,
         "executionLabel": "Running command"
       },
       "security": {
