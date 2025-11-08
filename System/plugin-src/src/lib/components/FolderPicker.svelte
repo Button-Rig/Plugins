@@ -1,10 +1,14 @@
 <script lang="ts">
   import { pickFolder } from "buttonrig";
 
-  let { folder = $bindable() }: { folder: string | null } = $props();
+  let {
+    folder = $bindable(),
+    onchange,
+  }: { folder: string | null; onchange: () => void } = $props();
 
   async function selectfolder() {
     folder = await pickFolder();
+    onchange();
   }
 </script>
 

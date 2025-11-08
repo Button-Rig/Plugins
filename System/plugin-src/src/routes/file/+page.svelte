@@ -2,6 +2,7 @@
   import FilePicker from "$lib/components/FilePicker.svelte";
   import { loadHandlerArgs, saveHandlerArgs } from "buttonrig";
   import { ErrorPayload } from "buttonrig/dist/types";
+  import { debounce } from "lodash";
 
   let file = $state<string | null>(null);
 
@@ -13,16 +14,20 @@
     }
   });
 
-  saveHandlerArgs(() => {
+  function save() {
+    let data: string[] | ErrorPayload;
     if (file) {
-      return ["open-file", "--file-path", file];
+      data = ["open-file", "--file-path", file];
     } else {
-      return new ErrorPayload("No file selected.");
+      data = new ErrorPayload("No file selected.");
     }
-  });
+    debounce(() => {
+      saveHandlerArgs(data);
+    }, 500);
+  }
 </script>
 
 <div class="container">
   <span>File</span>
-  <FilePicker bind:file />
+  <FilePicker bind:file onchange={save} />
 </div>

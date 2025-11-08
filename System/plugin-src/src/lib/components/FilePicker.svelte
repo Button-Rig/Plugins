@@ -1,10 +1,14 @@
 <script lang="ts">
   import { pickFile } from "buttonrig";
 
-  let { file = $bindable() }: { file: string | null } = $props();
+  let {
+    file = $bindable(),
+    onchange,
+  }: { file: string | null; onchange: () => void } = $props();
 
   async function selectFile() {
     file = await pickFile([]);
+    onchange();
   }
 </script>
 

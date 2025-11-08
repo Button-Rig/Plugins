@@ -2,6 +2,7 @@
   import FolderPicker from "$lib/components/FolderPicker.svelte";
   import { loadHandlerArgs, saveHandlerArgs } from "buttonrig";
   import { ErrorPayload } from "buttonrig/dist/types";
+  import { debounce } from "lodash";
 
   let path = $state<string | null>(null);
   let command = $state<string | null>(null);
@@ -14,27 +15,30 @@
     }
   });
 
-  saveHandlerArgs(() => {
+  function save() {
+    let data: string[] | ErrorPayload;
     if (command) {
-      let handlerArgs = ["run-command", "--command", command];
+      data = ["run-command", "--command", command];
       if (path) {
-        handlerArgs.push("--path");
-        handlerArgs.push(path);
+        data.push("--path");
+        data.push(path);
       }
-      return handlerArgs;
     } else {
-      return new ErrorPayload("Command not set.");
+      data = new ErrorPayload("Command not set.");
     }
-  });
+    debounce(() => {
+      saveHandlerArgs(data);
+    }, 500);
+  }
 </script>
 
 <div class="container">
   <div class="container">
     <span>Path</span>
-    <FolderPicker bind:folder={path} />
+    <FolderPicker bind:folder={path} onchange={save} />
   </div>
   <div class="container">
     <span>Command</span>
-    <input type="text" bind:value={command} />
+    <input type="text" bind:value={command} onchange={save} />
   </div>
 </div>

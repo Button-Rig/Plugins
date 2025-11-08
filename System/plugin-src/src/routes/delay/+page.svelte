@@ -1,6 +1,7 @@
 <script lang="ts">
   import { loadHandlerArgs, saveHandlerArgs } from "buttonrig";
   import { ErrorPayload } from "buttonrig/dist/types";
+  import { debounce } from "lodash";
 
   let delay = $state(0);
 
@@ -11,13 +12,16 @@
       }
     }
   });
-  
-  saveHandlerArgs(() => {
-      return ["delay", "--milliseconds", delay.toString()]
-  });
+
+  function save() {
+    debounce(() => {
+      saveHandlerArgs(["delay", "--milliseconds", delay.toString()]);
+    }, 500);
+  }
+
 </script>
 
 <div class="container">
     <span>Milliseconds</span>
-    <input type="number" min="0" bind:value={delay} />    
+    <input type="number" min="0" bind:value={delay} onchange={save}/>    
 </div>

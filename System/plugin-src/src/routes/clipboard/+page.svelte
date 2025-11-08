@@ -2,6 +2,7 @@
   import FilePicker from "$lib/components/FilePicker.svelte";
   import { loadHandlerArgs, saveHandlerArgs } from "buttonrig";
   import { ErrorPayload } from "buttonrig/dist/types";
+  import { debounce } from "lodash";
 
   class Clipboard {
     type: string;
@@ -45,17 +46,21 @@
     }
   });
 
-  saveHandlerArgs(() => {
+  function save() {
+    let data: string[] | ErrorPayload;
     if (clipboard.isText()) {
       if (clipboard.textContent) {
-        return ["copy-to-clipboard", "--value", clipboard.textContent];
+        data = ["copy-to-clipboard", "--value", clipboard.textContent];
       } else {
-        return new ErrorPayload("Clipboard text not set.");
+        data = new ErrorPayload("Clipboard text not set.");
       }
     } else {
-      return ["copy-to-clipboard", "--value"];
+      data = ["copy-to-clipboard", "--value"];
     }
-  });
+    debounce(() => {
+      saveHandlerArgs(data);
+    }, 500);
+  }
 </script>
 
 <div class="container">
@@ -87,13 +92,14 @@
 {#if clipboard.isFile()}
   <div id="file-content" class="container">
     <span>File</span>
-    <FilePicker bind:file={clipboard.filePath} />
+    <FilePicker bind:file={clipboard.filePath} onchange={save} />
   </div>
 {/if}
 
 {#if clipboard.isText()}
   <div id="text-content" class="container">
     <span>Text</span>
-    <textarea bind:value={clipboard.textContent} rows="2"></textarea>
+    <textarea bind:value={clipboard.textContent} rows="2" onchange={save}
+    ></textarea>
   </div>
 {/if}
