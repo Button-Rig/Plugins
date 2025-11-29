@@ -2,7 +2,7 @@
   import FolderPicker from "$lib/components/FolderPicker.svelte";
   import { loadHandlerArgs, saveHandlerArgs } from "buttonrig";
   import { ErrorPayload } from "buttonrig/dist/types";
-  import { debounce } from "lodash";
+  import { debounce, type DebouncedFunc } from "lodash";
 
   let folder = $state<string | null>(null);
 
@@ -14,6 +14,7 @@
     }
   });
 
+  let debouncedSave: DebouncedFunc<() => void> | null = null;
   function save() {
     let data: string[] | ErrorPayload;
     if (folder) {
@@ -21,9 +22,12 @@
     } else {
       data = new ErrorPayload("No folder selected.");
     }
-    debounce(() => {
-      saveHandlerArgs(data);
-    }, 500);
+    if (!debouncedSave) {
+      debouncedSave = debounce(() => {
+        saveHandlerArgs(data);
+      }, 500);
+    }
+    debouncedSave();
   }
 </script>
 

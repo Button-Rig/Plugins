@@ -81,5 +81,6 @@ function addEventListener(eventType: string, fn: (payload: RxPayload) => void) {
 }
 
 function postMessage(payload: TxPayload) {
-  window.parent.postMessage(newMessage(payload), "*");
+  let message = newMessage(payload);
+  window.parent.postMessage(message, "*");
 }

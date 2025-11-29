@@ -2,7 +2,7 @@
   import FilePicker from "$lib/components/FilePicker.svelte";
   import { loadHandlerArgs, saveHandlerArgs } from "buttonrig";
   import { ErrorPayload } from "buttonrig/dist/types";
-  import { debounce } from "lodash";
+  import { debounce, type DebouncedFunc } from "lodash";
 
   class Clipboard {
     type: string;
@@ -46,6 +46,7 @@
     }
   });
 
+  let debouncedSave: DebouncedFunc<() => void> | null = null;
   function save() {
     let data: string[] | ErrorPayload;
     if (clipboard.isText()) {
@@ -57,9 +58,12 @@
     } else {
       data = ["copy-to-clipboard", "--value"];
     }
-    debounce(() => {
-      saveHandlerArgs(data);
-    }, 500);
+    if (!debouncedSave) {
+      debouncedSave = debounce(() => {
+        saveHandlerArgs(data);
+      }, 500);
+    }
+    debouncedSave();
   }
 </script>
 
@@ -99,7 +103,7 @@
 {#if clipboard.isText()}
   <div id="text-content" class="container">
     <span>Text</span>
-    <textarea bind:value={clipboard.textContent} rows="2" onchange={save}
+    <textarea bind:value={clipboard.textContent} rows="2" oninput={save}
     ></textarea>
   </div>
 {/if}

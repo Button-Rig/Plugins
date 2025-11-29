@@ -2,7 +2,7 @@
   import FolderPicker from "$lib/components/FolderPicker.svelte";
   import { loadHandlerArgs, saveHandlerArgs } from "buttonrig";
   import { ErrorPayload } from "buttonrig/dist/types";
-  import { debounce } from "lodash";
+  import { debounce, type DebouncedFunc } from "lodash";
 
   let path = $state<string | null>(null);
   let command = $state<string | null>(null);
@@ -15,6 +15,7 @@
     }
   });
 
+  let debouncedSave: DebouncedFunc<() => void> | null = null;
   function save() {
     let data: string[] | ErrorPayload;
     if (command) {
@@ -26,9 +27,13 @@
     } else {
       data = new ErrorPayload("Command not set.");
     }
-    debounce(() => {
-      saveHandlerArgs(data);
-    }, 500);
+
+    if (!debouncedSave) {
+      debouncedSave = debounce(() => {
+        saveHandlerArgs(data);
+      }, 500);
+    }
+    debouncedSave();
   }
 </script>
 
@@ -39,6 +44,6 @@
   </div>
   <div class="container">
     <span>Command</span>
-    <input type="text" bind:value={command} onchange={save} />
+    <input type="text" bind:value={command} oninput={save} />
   </div>
 </div>
