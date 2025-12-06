@@ -22,9 +22,14 @@
     }
     debouncedSave();
   }
+
+  $effect(() => {
+    delay;
+    save();
+  });
 </script>
 
 <div class="container">
   <span>Milliseconds</span>
-  <input type="number" min="0" bind:value={delay} oninput={save} />
+  <input type="number" min="0" bind:value={delay} />
 </div>

@@ -45,4 +45,15 @@ input {
 .input-label {
     color: rgb(188, 188, 188);
     font-size: 0.97rem;
+    align-content: center;
+}
+
+.radio-container {
+  display: flex; 
+  gap: 20px;
+}
+
+.radio-item-container {
+  display:flex; 
+  gap: 10px
 }

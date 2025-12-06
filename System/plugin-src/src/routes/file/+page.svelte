@@ -14,7 +14,6 @@
     }
   });
 
-  let debouncedSave: DebouncedFunc<() => void> | null = null;
   function save() {
     let data: string[] | ErrorPayload;
     if (file) {
@@ -22,13 +21,7 @@
     } else {
       data = new ErrorPayload("No file selected.");
     }
-
-    if (!debouncedSave) {
-      debouncedSave = debounce(() => {
-        saveHandlerArgs(data);
-      }, 500);
-    }
-    debouncedSave();
+    saveHandlerArgs(data);
   }
 </script>
 

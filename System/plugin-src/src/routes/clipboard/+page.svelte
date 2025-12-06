@@ -37,40 +37,49 @@
   }
 
   let clipboard = $state(Clipboard.text(null));
+  let textContent = $state<string | null>(null);
 
   loadHandlerArgs((args) => {
     if (args[1] == "--value") {
       if (args[2]) {
         clipboard = Clipboard.text(args[2]);
+        textContent = args[2];
       }
     }
   });
 
   let debouncedSave: DebouncedFunc<() => void> | null = null;
   function save() {
-    let data: string[] | ErrorPayload;
-    if (clipboard.isText()) {
-      if (clipboard.textContent) {
-        data = ["copy-to-clipboard", "--value", clipboard.textContent];
-      } else {
-        data = new ErrorPayload("Clipboard text not set.");
-      }
-    } else {
-      data = ["copy-to-clipboard", "--value"];
-    }
     if (!debouncedSave) {
       debouncedSave = debounce(() => {
+        let data: string[] | ErrorPayload;
+        if (clipboard.isText()) {
+          if (clipboard.textContent) {
+            data = ["copy-to-clipboard", "--value", clipboard.textContent];
+          } else {
+            data = new ErrorPayload("Clipboard text not set.");
+          }
+        } else {
+          data = ["copy-to-clipboard", "--value"];
+        }
         saveHandlerArgs(data);
       }, 500);
     }
     debouncedSave();
   }
+
+  $effect(() => {
+    if(textContent && clipboard.isText()){
+      clipboard.textContent = textContent;
+    }
+    save();
+  });
 </script>
 
 <div class="container">
   <span>Content Type</span>
-  <div style="display: flex; gap: 20px;">
-    <div>
+  <div class="radio-container">
+    <div class="radio-item-container">
       <input
         id="text"
         onclick={() => (clipboard = Clipboard.text(null))}
@@ -80,7 +89,7 @@
       />
       <label class="input-label" for="text">Text</label>
     </div>
-    <div>
+    <div class="radio-item-container">
       <input
         id="file"
         onclick={() => (clipboard = Clipboard.file())}
@@ -103,7 +112,6 @@
 {#if clipboard.isText()}
   <div id="text-content" class="container">
     <span>Text</span>
-    <textarea bind:value={clipboard.textContent} rows="2" oninput={save}
-    ></textarea>
+    <textarea bind:value={textContent} rows="2"></textarea>
   </div>
 {/if}

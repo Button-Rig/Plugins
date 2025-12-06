@@ -14,7 +14,6 @@
     }
   });
 
-  let debouncedSave: DebouncedFunc<() => void> | null = null;
   function save() {
     let data: string[] | ErrorPayload;
     if (folder) {
@@ -22,12 +21,7 @@
     } else {
       data = new ErrorPayload("No folder selected.");
     }
-    if (!debouncedSave) {
-      debouncedSave = debounce(() => {
-        saveHandlerArgs(data);
-      }, 500);
-    }
-    debouncedSave();
+    saveHandlerArgs(data);
   }
 </script>
 

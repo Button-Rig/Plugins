@@ -15,22 +15,31 @@
 
   let debouncedSave: DebouncedFunc<() => void> | null = null;
   function save() {
-    let data: string[] | ErrorPayload;
-    if (websiteUrl) {
-      data = ["open-website", "--url", websiteUrl];
-    } else {
-      data = new ErrorPayload("Website url not set.");
-    }
+
     if (!debouncedSave) {
       debouncedSave = debounce(() => {
+        let data: string[] | ErrorPayload;
+        if (websiteUrl) {
+          console.log(websiteUrl);
+          data = ["open-website", "--url", websiteUrl];
+        } else {
+          data = new ErrorPayload("Website url not set.");
+        }
+        console.log(data);
+
         saveHandlerArgs(data);
       }, 500);
     }
     debouncedSave();
   }
+
+  $effect(() => {
+    websiteUrl;
+    save();
+  });
 </script>
 
 <div class="container">
   <span>Website Url</span>
-  <input type="text" bind:value={websiteUrl} oninput={save} />
+  <input type="text" bind:value={websiteUrl} />
 </div>
