@@ -1,6 +1,7 @@
 {
+  "author":"buttonrig",
   "name": "Button Rig",
-  "version": "1.0",
+  "version": "1.0.0",
   "targetVersion": "br_plugins_1.0",
   "icon": "buttonrig.svg",
   "handlerCli": [
