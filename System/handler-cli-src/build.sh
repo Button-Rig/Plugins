@@ -6,9 +6,9 @@ if [ -z "$1" ]; then
 fi
 
 windows() {
-    rustup target add x86_64-pc-windows-msvc
-    cargo build --release --target x86_64-pc-windows-msvc
-    cp ./target/x86_64-pc-windows-msvc/release/handler-cli ../plugin-src/static/handler-cli-x86_64-windows.exe
+    rustup target add x86_64-pc-windows-gnu
+    cargo build --release --target x86_64-pc-windows-gnu
+    cp ./target/x86_64-pc-windows-gnu/release/handler-cli ../plugin-src/static/handler-cli-x86_64-windows.exe
 }
 
 linux() {

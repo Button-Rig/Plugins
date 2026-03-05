@@ -6,9 +6,9 @@ if [ -z "$1" ]; then
 fi
 
 windows() {
-    rustup target add x86_64-pc-windows-msvc
-    cargo build --release --target x86_64-pc-windows-msvc
-    cp ./target/x86_64-pc-windows-msvc/release/handler-cli ../plugin/handler-cli-x86_64-windows.exe
+    rustup target add x86_64-pc-windows-gnu
+    cargo build --release --target x86_64-pc-windows-gnu
+    cp ./target/x86_64-pc-windows-gnu/release/handler-cli.exe ../plugin/handler-cli-x86_64-windows.exe
 }
 
 linux() {
@@ -30,13 +30,9 @@ case "$1" in
 "linux")
     linux
 	;;
-"mac")
-	mac
-	;;
 "all")
     windows
     linux
-    mac
 	;;
 *)
 	echo "Error: Invalid input. Expected 'windows', 'linux', 'mac' or 'all'" >&2
